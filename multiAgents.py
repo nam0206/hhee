@@ -344,7 +344,7 @@ def betterEvaluationFunction(currentGameState: GameState):
 
     if len(foodList) > 0:
         min_food_dist = min([getMazeDistance(pos, food, currentGameState) for food in foodList])
-        score += 30.0 / min_food_dist
+        score -= min_food_dist
 
     score -= 20 * len(foodList)
 
