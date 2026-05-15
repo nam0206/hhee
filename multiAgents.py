@@ -349,9 +349,9 @@ def betterEvaluationFunction(currentGameState: GameState):
 
     if len(foodList) > 0:
         min_food_dist = min([getMazeDistance(pos, food, currentGameState) for food in foodList])
-        score -= min_food_dist
+        score -= 1.5 * min_food_dist
 
-    score -= 20 * len(foodList)
+    score -= 15 * len(foodList)
 
     tmp = 0
 
@@ -364,7 +364,7 @@ def betterEvaluationFunction(currentGameState: GameState):
 
         elif ghost.scaredTimer > 0:
             if ghost_dist > 0:
-                tmp = max(tmp, 222.0 / ghost_dist)
+                tmp = max(tmp, 250.0 / ghost_dist)
     return score + tmp
 
 # Abbreviation
