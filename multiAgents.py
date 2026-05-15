@@ -74,14 +74,19 @@ class ReflexAgent(Agent):
         newGhostStates = successorGameState.getGhostStates()
         newScaredTimes = [ghostState.scaredTimer for ghostState in newGhostStates]
 
+        food_list = newFood.asList()
+
+        if len(food_list) == 0: return successorGameState.getScore()
+
         best = -float('inf')
 
-        for x in newFood.asList() :
+        for x in food_list :
             best = max(best, -getMazeDistance(newPos, x, currentGameState))
 
+        best -= 20 * len(food_list)
         "*** YOUR CODE HERE ***"
-        return successorGameState.getScore() + best
 
+        return successorGameState.getScore() + best
 def scoreEvaluationFunction(currentGameState: GameState):
     """
     This default evaluation function just returns the score of the state.
